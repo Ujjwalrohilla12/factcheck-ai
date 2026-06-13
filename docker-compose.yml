@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  factcheck-ai:
+    build: .
+    container_name: factcheck-ai
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./output:/app/output
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
